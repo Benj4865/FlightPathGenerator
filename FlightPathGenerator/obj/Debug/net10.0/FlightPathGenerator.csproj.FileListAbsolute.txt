@@ -1,0 +1,14 @@
+c:\Users\bena3\VSCode_Repos\FlightPathGenerator\FlightPathGenerator\bin\Debug\net10.0\FlightPathGenerator.exe
+c:\Users\bena3\VSCode_Repos\FlightPathGenerator\FlightPathGenerator\bin\Debug\net10.0\FlightPathGenerator.deps.json
+c:\Users\bena3\VSCode_Repos\FlightPathGenerator\FlightPathGenerator\bin\Debug\net10.0\FlightPathGenerator.runtimeconfig.json
+c:\Users\bena3\VSCode_Repos\FlightPathGenerator\FlightPathGenerator\bin\Debug\net10.0\FlightPathGenerator.dll
+c:\Users\bena3\VSCode_Repos\FlightPathGenerator\FlightPathGenerator\bin\Debug\net10.0\FlightPathGenerator.pdb
+c:\Users\bena3\VSCode_Repos\FlightPathGenerator\FlightPathGenerator\obj\Debug\net10.0\FlightPathGenerator.GeneratedMSBuildEditorConfig.editorconfig
+c:\Users\bena3\VSCode_Repos\FlightPathGenerator\FlightPathGenerator\obj\Debug\net10.0\FlightPathGenerator.AssemblyInfoInputs.cache
+c:\Users\bena3\VSCode_Repos\FlightPathGenerator\FlightPathGenerator\obj\Debug\net10.0\FlightPathGenerator.AssemblyInfo.cs
+c:\Users\bena3\VSCode_Repos\FlightPathGenerator\FlightPathGenerator\obj\Debug\net10.0\FlightPathGenerator.csproj.CoreCompileInputs.cache
+c:\Users\bena3\VSCode_Repos\FlightPathGenerator\FlightPathGenerator\obj\Debug\net10.0\FlightPathGenerator.dll
+c:\Users\bena3\VSCode_Repos\FlightPathGenerator\FlightPathGenerator\obj\Debug\net10.0\refint\FlightPathGenerator.dll
+c:\Users\bena3\VSCode_Repos\FlightPathGenerator\FlightPathGenerator\obj\Debug\net10.0\FlightPathGenerator.pdb
+c:\Users\bena3\VSCode_Repos\FlightPathGenerator\FlightPathGenerator\obj\Debug\net10.0\FlightPathGenerator.genruntimeconfig.cache
+c:\Users\bena3\VSCode_Repos\FlightPathGenerator\FlightPathGenerator\obj\Debug\net10.0\ref\FlightPathGenerator.dll
