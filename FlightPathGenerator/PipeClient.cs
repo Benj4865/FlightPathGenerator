@@ -1,7 +1,7 @@
 // This entire file is written by AI
 using System.IO.Pipes;
 
-public class BrokerClient
+public class PipeClient
 {
     private NamedPipeClientStream? _pipe;
     private StreamReader? _reader;

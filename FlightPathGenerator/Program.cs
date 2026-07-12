@@ -3,9 +3,9 @@ using System.IO.Pipes;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 
-var broker = new BrokerClient();
-await broker.ConnectAsync();
-await broker.SendAsync("FPG Client is running and connected to the broker.");
+var client = new PipeClient();
+await client.ConnectAsync();
+await client.SendAsync("FlightPathGenerator");
 
 Console.WriteLine("FlightPathGenerator is running...");
 
