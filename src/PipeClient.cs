@@ -1,4 +1,4 @@
-// This entire file is written by AI
+
 using System.IO.Pipes;
 
 public class PipeClient
@@ -8,7 +8,7 @@ public class PipeClient
     private StreamWriter? _writer;
 
 
-    public async Task ConnectAsync()
+    public async Task ConnectAsync(string moduleName)
     {
         _pipe = new NamedPipeClientStream(
             ".",
@@ -24,10 +24,8 @@ public class PipeClient
             AutoFlush = true
         };
 
-        await _writer.WriteLineAsync("FlightPathGenerator");
+        await _writer.WriteLineAsync(moduleName);
 
-        //var response = await _reader.ReadLineAsync() ?? "unknown";
-        //Console.WriteLine($"Server responded: {response}");
     }
 
     public async Task SendMessage(string type, string recipient, string payload)
@@ -52,6 +50,6 @@ public class PipeClient
         if (_reader == null)
             throw new InvalidOperationException("Not connected.");
 
-        return await _reader.ReadLineAsync();
+        return await _reader.ReadToEndAsync();
     }
 }
