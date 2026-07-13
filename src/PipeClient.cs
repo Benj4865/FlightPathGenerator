@@ -7,6 +7,7 @@ public class PipeClient
     private StreamReader? _reader;
     private StreamWriter? _writer;
 
+
     public async Task ConnectAsync()
     {
         _pipe = new NamedPipeClientStream(
@@ -22,14 +23,28 @@ public class PipeClient
         {
             AutoFlush = true
         };
+
+        await _writer.WriteLineAsync("FlightPathGenerator");
+
+        //var response = await _reader.ReadLineAsync() ?? "unknown";
+        //Console.WriteLine($"Server responded: {response}");
     }
 
-    public async Task SendAsync(string message)
+    public async Task SendMessage(string type, string recipient, string payload)
     {
         if (_writer == null)
             throw new InvalidOperationException("Not connected.");
 
-        await _writer.WriteLineAsync(message);
+        var messageData = new
+        {
+            type = type,
+            recipient = recipient,
+            payload = payload
+        };
+
+        var message = System.Text.Json.JsonSerializer.Serialize(messageData);
+
+        await _writer.WriteAsync(message);
     }
 
     public async Task<string?> ReceiveAsync()

@@ -5,7 +5,6 @@ using System.Text.Json.Nodes;
 
 var client = new PipeClient();
 await client.ConnectAsync();
-await client.SendAsync("FlightPathGenerator");
 
 Console.WriteLine("FlightPathGenerator is running...");
 
@@ -25,11 +24,13 @@ if (!int.TryParse(hardwareChoice, out int hardwareConfig) || hardwareConfig < 1 
     return;
 }
 
-GenerateFlightPath(startingPoint, destinationPoint, hardwareConfig);
+var flightPath = GenerateFlightPath(startingPoint, destinationPoint, hardwareConfig);
 
+await client.SendMessage("message", "visualizer", flightPath);
 
+Console.WriteLine("Flight path sent to visualizer.");
 
-static void GenerateFlightPath(string start, string destination, int hardwareConfig)
+static string GenerateFlightPath(string start, string destination, int hardwareConfig)
 {
     // Placeholder for flight path generation logic
     Console.WriteLine($"Generating flight path from {start} to {destination} using hardware configuration {hardwareConfig}...");
@@ -42,7 +43,10 @@ static void GenerateFlightPath(string start, string destination, int hardwareCon
     var coordinatesNode = jsonNode?["geometry"]?["coordinates"] as JsonArray;
     coordinatesNode.Add(JsonNode.Parse($"[{start.Split(",")[0]}, {start.Split(",")[1]}, 0]"));
     coordinatesNode.Add(JsonNode.Parse($"[{destination.Split(",")[0]}, {destination.Split(",")[1]}, 0]"));
-    File.WriteAllText("flight_path.json", jsonNode.ToString());
+    //File.WriteAllText("flight_path.json", jsonNode.ToString());
+
+    return jsonNode.ToString();
+    
 }
 
 
