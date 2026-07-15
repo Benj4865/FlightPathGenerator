@@ -9,7 +9,6 @@ public class TartaMessage(string type, string subCategory, string sender, string
     public string Recipient { get; } = recipient;
     public string Payload { get; } = payload;
 }
-
 public class PipeClient
 {
     private NamedPipeClientStream? _pipe;
@@ -38,8 +37,12 @@ public class PipeClient
         using var reader = new StreamReader(_pipe);
         while (true)
         {
-            var recievedLine = await reader.ReadLineAsync();
 
+            var recievedLine = await reader.ReadLineAsync();
+            if (recievedLine == null)
+            {
+                continue;
+            }
             try
             {
                 // Extracting the message propertier and putting them into an object
@@ -59,7 +62,7 @@ public class PipeClient
         if (_writer == null)
             throw new InvalidOperationException("Not connected.");
 
-        var message = new TartaMessage("message", subCategory, sender, recipient, payload.Replace("\n", "").Replace("\r", ""));
+        var message = new TartaMessage(type, subCategory, sender, recipient, payload.Replace("\n", "").Replace("\r", ""));
         var json_formatted_message = System.Text.Json.JsonSerializer.Serialize(message);
         await _writer.WriteLineAsync(json_formatted_message);
     }
