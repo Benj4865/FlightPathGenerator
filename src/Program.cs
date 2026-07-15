@@ -4,7 +4,7 @@ using System.Text.Json;
 using System.Text.Json.Nodes;
 
 var client = new PipeClient();
-await client.ConnectAsync();
+_= client.ConnectAsync("FlightPathGenerator");
 
 Console.WriteLine("FlightPathGenerator is running...");
 
@@ -26,7 +26,7 @@ if (!int.TryParse(hardwareChoice, out int hardwareConfig) || hardwareConfig < 1 
 
 var flightPath = GenerateFlightPath(startingPoint, destinationPoint, hardwareConfig);
 
-await client.SendMessage("message", "visualizer", flightPath);
+await client.SendMessage("message","FlightPath", "FlightPathGenerator", "FlightPathVisualizer", flightPath);
 
 Console.WriteLine("Flight path sent to visualizer.");
 
