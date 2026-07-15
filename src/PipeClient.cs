@@ -41,7 +41,7 @@ public class PipeClient
         };
 
         var message = System.Text.Json.JsonSerializer.Serialize(messageData);
-
+        message = message.Replace("\n", "").Replace("\r", ""); // Remove newlines to ensure the message is sent as a single line
         await _writer.WriteAsync(message);
     }
 
