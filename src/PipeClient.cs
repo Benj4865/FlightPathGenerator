@@ -1,6 +1,14 @@
 
 using System.IO.Pipes;
 
+public class TartaMessage(string type, string sender, string recipient, string payload) : EventArgs
+{
+    public string Type { get; } = type;
+    public string Sender { get; } = sender;
+    public string Recipient { get; } = recipient;
+    public string Payload { get; } = payload;
+}
+
 public class PipeClient
 {
     private NamedPipeClientStream? _pipe;
@@ -33,16 +41,9 @@ public class PipeClient
         if (_writer == null)
             throw new InvalidOperationException("Not connected.");
 
-        var messageData = new
-        {
-            type = type,
-            recipient = recipient,
-            payload = payload
-        };
-
-        var message = System.Text.Json.JsonSerializer.Serialize(messageData);
-        message = message.Replace("\n", "").Replace("\r", ""); // Remove newlines to ensure the message is sent as a single line
-        await _writer.WriteAsync(message);
+        var message = new TartaMessage("message", ClientName, recipientName, messageBody);
+        var json_formatted_message = System.Text.Json.JsonSerializer.Serialize(message);
+        await _writer.WriteLineAsync(json_formatted_message);
     }
 
     public async Task<string?> ReceiveAsync()
