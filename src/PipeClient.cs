@@ -21,7 +21,7 @@ public class PipeClient
     {
         _pipe = new NamedPipeClientStream(
             ".",
-            "MessagePipe",
+            "TartaMessagePipe",
             PipeDirection.InOut,
             PipeOptions.Asynchronous);
 
